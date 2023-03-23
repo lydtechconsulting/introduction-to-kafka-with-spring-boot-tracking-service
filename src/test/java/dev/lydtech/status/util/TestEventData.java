@@ -1,7 +1,7 @@
-package com.example.status.util;
+package dev.lydtech.status.util;
 
-import com.example.status.message.OrderCreated;
-import com.example.status.message.OrderDispatched;
+import dev.lydtech.status.message.OrderCreated;
+import dev.lydtech.status.message.OrderDispatched;
 
 import java.util.UUID;
 

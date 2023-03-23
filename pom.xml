@@ -8,7 +8,7 @@
 		<version>3.0.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>dev.lydtech</groupId>
 	<artifactId>status</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>status</name>

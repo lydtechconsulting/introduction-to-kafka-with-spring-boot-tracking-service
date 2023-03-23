@@ -1,7 +1,7 @@
-package com.example.status.service;
+package dev.lydtech.status.service;
 
-import com.example.status.message.OrderCreated;
-import com.example.status.message.OrderDispatched;
+import dev.lydtech.status.message.OrderCreated;
+import dev.lydtech.status.message.OrderDispatched;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

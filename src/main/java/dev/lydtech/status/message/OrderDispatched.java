@@ -1,4 +1,4 @@
-package com.example.status.message;
+package dev.lydtech.status.message;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,9 +11,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderCreated {
+public class OrderDispatched {
     UUID orderId;
-
-    String item;
 
 }

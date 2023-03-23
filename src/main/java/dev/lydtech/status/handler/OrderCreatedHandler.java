@@ -1,7 +1,7 @@
-package com.example.status.handler;
+package dev.lydtech.status.handler;
 
-import com.example.status.message.OrderCreated;
-import com.example.status.service.StatusService;
+import dev.lydtech.status.message.OrderCreated;
+import dev.lydtech.status.service.StatusService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

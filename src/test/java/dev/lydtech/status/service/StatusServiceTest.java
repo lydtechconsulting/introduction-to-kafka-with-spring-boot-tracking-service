@@ -1,8 +1,8 @@
-package com.example.status.service;
+package dev.lydtech.status.service;
 
-import com.example.status.message.OrderCreated;
-import com.example.status.message.OrderDispatched;
-import com.example.status.util.TestEventData;
+import dev.lydtech.status.message.OrderCreated;
+import dev.lydtech.status.message.OrderDispatched;
+import dev.lydtech.status.util.TestEventData;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

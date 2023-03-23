@@ -1,7 +1,7 @@
-package com.example.status;
+package dev.lydtech.status;
 
-import com.example.status.message.OrderCreated;
-import com.example.status.message.OrderDispatched;
+import dev.lydtech.status.message.OrderCreated;
+import dev.lydtech.status.message.OrderDispatched;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-@ComponentScan(basePackages = { "com.example"})
+@ComponentScan(basePackages = { "dev.lydtech"})
 public class StatusConfiguration {
 
     @Bean
