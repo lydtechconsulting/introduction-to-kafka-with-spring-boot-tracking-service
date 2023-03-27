@@ -1,13 +1,13 @@
-package dev.lydtech.status;
+package dev.lydtech.tracking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StatusApplication {
+public class TrackingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StatusApplication.class, args);
+		SpringApplication.run(TrackingApplication.class, args);
 	}
 
 }
