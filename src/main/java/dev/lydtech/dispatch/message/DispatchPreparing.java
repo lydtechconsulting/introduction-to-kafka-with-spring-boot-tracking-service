@@ -11,9 +11,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DispatchTracking {
+public class DispatchPreparing {
     UUID orderId;
-
-    String status;
 
 }

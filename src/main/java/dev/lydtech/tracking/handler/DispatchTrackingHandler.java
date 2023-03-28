@@ -1,6 +1,6 @@
 package dev.lydtech.tracking.handler;
 
-import dev.lydtech.dispatch.message.DispatchTracking;
+import dev.lydtech.dispatch.message.DispatchPreparing;
 import dev.lydtech.tracking.service.TrackingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +22,7 @@ public class DispatchTrackingHandler {
             groupId = "tracking.dispatch.tracking",
             containerFactory = "kafkaListenerContainerFactory"
     )
-    public void listen(DispatchTracking dispatchTracking) {
-        trackingService.process(dispatchTracking);
+    public void listen(DispatchPreparing dispatchPreparing) {
+        trackingService.process(dispatchPreparing);
     }
 }

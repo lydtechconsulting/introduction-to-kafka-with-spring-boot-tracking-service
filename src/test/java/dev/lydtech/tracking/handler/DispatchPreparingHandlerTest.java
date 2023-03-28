@@ -1,6 +1,6 @@
 package dev.lydtech.tracking.handler;
 
-import dev.lydtech.dispatch.message.DispatchTracking;
+import dev.lydtech.dispatch.message.DispatchPreparing;
 import dev.lydtech.tracking.service.TrackingService;
 import dev.lydtech.tracking.util.TestEventData;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -11,7 +11,7 @@ import java.util.UUID;
 
 import static org.mockito.Mockito.*;
 
-public class DispatchTrackingHandlerTest {
+public class DispatchPreparingHandlerTest {
 
     private TrackingService trackingServiceMock;
 
@@ -25,7 +25,7 @@ public class DispatchTrackingHandlerTest {
 
     @Test
     public void testListen() {
-        DispatchTracking testEvent = TestEventData.buildDispatchTrackingEvent(UUID.randomUUID(), RandomStringUtils.randomAlphabetic(8));
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(UUID.randomUUID(), RandomStringUtils.randomAlphabetic(8));
         handler.listen(testEvent);
         verify(trackingServiceMock, times(1)).process(testEvent);
     }

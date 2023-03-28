@@ -1,6 +1,6 @@
 package dev.lydtech.tracking;
 
-import dev.lydtech.dispatch.message.DispatchTracking;
+import dev.lydtech.dispatch.message.DispatchPreparing;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,21 +21,21 @@ import java.util.Map;
 public class TrackingConfiguration {
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, DispatchTracking> kafkaListenerContainerFactory(ConsumerFactory<String, DispatchTracking> consumerFactory) {
-        final ConcurrentKafkaListenerContainerFactory<String, DispatchTracking> factory = new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String, DispatchPreparing> kafkaListenerContainerFactory(ConsumerFactory<String, DispatchPreparing> consumerFactory) {
+        final ConcurrentKafkaListenerContainerFactory<String, DispatchPreparing> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         return factory;
     }
 
     @Bean
-    public ConsumerFactory<String, DispatchTracking> consumerFactory(@Value("${kafka.bootstrap.servers}") String bootstrapServers) {
+    public ConsumerFactory<String, DispatchPreparing> consumerFactory(@Value("${kafka.bootstrap.servers}") String bootstrapServers) {
         final Map<String, Object> config = new HashMap<>();
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
         config.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
         config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
-        config.put(JsonDeserializer.VALUE_DEFAULT_TYPE, DispatchTracking.class);
+        config.put(JsonDeserializer.VALUE_DEFAULT_TYPE, DispatchPreparing.class);
         return new DefaultKafkaConsumerFactory<>(config);
     }
 
