@@ -3,7 +3,6 @@ package dev.lydtech.tracking.handler;
 import dev.lydtech.dispatch.message.DispatchPreparing;
 import dev.lydtech.tracking.service.TrackingService;
 import dev.lydtech.tracking.util.TestEventData;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,7 @@ public class DispatchPreparingHandlerTest {
 
     @Test
     public void testListen() {
-        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(UUID.randomUUID(), RandomStringUtils.randomAlphabetic(8));
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(UUID.randomUUID());
         handler.listen(testEvent);
         verify(trackingServiceMock, times(1)).process(testEvent);
     }

@@ -2,7 +2,6 @@ package dev.lydtech.tracking.service;
 
 import dev.lydtech.dispatch.message.DispatchPreparing;
 import dev.lydtech.tracking.util.TestEventData;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,7 @@ public class TrackingServiceTest {
 
     @Test
     public void testProcess() {
-        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(UUID.randomUUID(), RandomStringUtils.randomAlphabetic(8));
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(UUID.randomUUID());
         service.process(testEvent);
     }
 }
