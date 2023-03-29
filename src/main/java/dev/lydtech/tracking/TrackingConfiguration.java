@@ -1,6 +1,5 @@
 package dev.lydtech.tracking;
 
-import dev.lydtech.dispatch.message.DispatchPreparing;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +23,7 @@ public class TrackingConfiguration {
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<?, ?> kafkaListenerContainerFactory(ConsumerFactory<String, Object> consumerFactory) {
+
         final ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         return factory;
@@ -41,5 +41,4 @@ public class TrackingConfiguration {
         return new DefaultKafkaConsumerFactory<>(config);
 
     }
-
 }

@@ -1,6 +1,7 @@
 package dev.lydtech.tracking.service;
 
 import dev.lydtech.dispatch.message.DispatchPreparing;
+import dev.lydtech.dispatch.message.Dispatched;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -8,8 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class TrackingService {
 
-    public void process(DispatchPreparing dispatchPreparing) {
+    public void processDispatchPreparing(DispatchPreparing dispatchPreparing) {
         log.info("Received dispatch preparing message : " + dispatchPreparing);
+    }
+
+    public void processDispatched(Dispatched dispatched) {
+        log.info("Received dispatched message : " + dispatched);
     }
 
 }

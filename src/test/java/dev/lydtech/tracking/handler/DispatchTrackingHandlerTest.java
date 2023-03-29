@@ -1,6 +1,7 @@
 package dev.lydtech.tracking.handler;
 
 import dev.lydtech.dispatch.message.DispatchPreparing;
+import dev.lydtech.dispatch.message.Dispatched;
 import dev.lydtech.tracking.service.TrackingService;
 import dev.lydtech.tracking.util.TestEventData;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +11,7 @@ import java.util.UUID;
 
 import static org.mockito.Mockito.*;
 
-public class DispatchPreparingHandlerTest {
+public class DispatchTrackingHandlerTest {
 
     private TrackingService trackingServiceMock;
 
@@ -23,9 +24,16 @@ public class DispatchPreparingHandlerTest {
     }
 
     @Test
-    public void testListen() {
+    public void testListenDispatchPreparing() {
         DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(UUID.randomUUID());
         handler.listen(testEvent);
-        verify(trackingServiceMock, times(1)).process(testEvent);
+        verify(trackingServiceMock, times(1)).processDispatchPreparing(testEvent);
+    }
+
+    @Test
+    public void testListenDispatched() {
+        Dispatched testEvent = TestEventData.buildDispatchedEvent(UUID.randomUUID());
+        handler.listen(testEvent);
+        verify(trackingServiceMock, times(1)).processDispatched(testEvent);
     }
 }
