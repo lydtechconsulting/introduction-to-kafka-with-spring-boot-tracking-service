@@ -1,7 +1,7 @@
 package dev.lydtech.tracking.util;
 
 import dev.lydtech.dispatch.message.DispatchPreparing;
-import dev.lydtech.dispatch.message.Dispatched;
+import dev.lydtech.dispatch.message.DispatchCompleted;
 
 import java.util.UUID;
 
@@ -13,10 +13,12 @@ public class TestEventData {
                 .build();
     }
 
-    public static Dispatched buildDispatchedEvent(UUID orderId) {
-        return Dispatched.builder()
+    public static DispatchCompleted buildDispatchCompletedEvent(UUID orderId, String date) {
+        return DispatchCompleted.builder()
                 .orderId(orderId)
+                .dispatchedDate(date)
                 .build();
+
     }
 
 }

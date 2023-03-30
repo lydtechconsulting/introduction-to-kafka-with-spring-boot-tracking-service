@@ -11,7 +11,8 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Dispatched {
+public class DispatchCompleted {
     UUID orderId;
+    String dispatchedDate;
 
 }

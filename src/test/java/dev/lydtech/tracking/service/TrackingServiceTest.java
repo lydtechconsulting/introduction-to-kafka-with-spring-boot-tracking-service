@@ -1,11 +1,12 @@
 package dev.lydtech.tracking.service;
 
 import dev.lydtech.dispatch.message.DispatchPreparing;
-import dev.lydtech.dispatch.message.Dispatched;
+import dev.lydtech.dispatch.message.DispatchCompleted;
 import dev.lydtech.tracking.util.TestEventData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class TrackingServiceTest {
@@ -24,7 +25,7 @@ public class TrackingServiceTest {
 
     @Test
     public void testProcessDispatched() {
-        Dispatched testEvent = TestEventData.buildDispatchedEvent(UUID.randomUUID());
+        DispatchCompleted testEvent = TestEventData.buildDispatchCompletedEvent(UUID.randomUUID(), LocalDate.now().toString());
         service.processDispatched(testEvent);
     }
 

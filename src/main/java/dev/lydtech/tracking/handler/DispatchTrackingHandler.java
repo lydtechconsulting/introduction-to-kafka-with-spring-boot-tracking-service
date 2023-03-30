@@ -1,7 +1,7 @@
 package dev.lydtech.tracking.handler;
 
 import dev.lydtech.dispatch.message.DispatchPreparing;
-import dev.lydtech.dispatch.message.Dispatched;
+import dev.lydtech.dispatch.message.DispatchCompleted;
 import dev.lydtech.tracking.service.TrackingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
     }
 
     @KafkaHandler
-    public void listen(Dispatched dispatched) {
-        trackingService.processDispatched(dispatched);
+    public void listen(DispatchCompleted dispatchCompleted) {
+        trackingService.processDispatched(dispatchCompleted);
     }
 }
