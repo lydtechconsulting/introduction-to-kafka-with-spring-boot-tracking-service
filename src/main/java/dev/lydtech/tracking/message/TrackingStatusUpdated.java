@@ -1,5 +1,6 @@
 package dev.lydtech.tracking.message;
 
+import dev.lydtech.tracking.service.TrackingStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,6 @@ import java.util.UUID;
 public class TrackingStatusUpdated {
     UUID orderId;
 
-    String status;
+    TrackingStatus status;
 
 }
