@@ -22,7 +22,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 
-public class commitTrackingServiceTest {
+public class TrackingServiceTest {
 
     private KafkaTemplate kafkaProducerMock;
     private TrackingService service;
