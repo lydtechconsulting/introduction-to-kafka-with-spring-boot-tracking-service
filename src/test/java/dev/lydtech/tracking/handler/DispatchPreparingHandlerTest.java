@@ -24,7 +24,7 @@ public class DispatchPreparingHandlerTest {
     }
 
     @Test
-    public void listen_success() throws Exception {
+    public void listen_Success() throws Exception {
         DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(UUID.randomUUID());
         handler.listen(testEvent);
         verify(trackingServiceMock, times(1)).process(testEvent);
