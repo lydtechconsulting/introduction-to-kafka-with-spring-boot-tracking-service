@@ -11,7 +11,7 @@ import java.util.UUID;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrackingStatus {
+public class TrackingStatusUpdated {
     UUID orderId;
 
     String status;

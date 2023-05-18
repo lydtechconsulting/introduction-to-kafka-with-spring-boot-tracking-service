@@ -1,13 +1,11 @@
 package dev.lydtech.tracking.service;
 
 import dev.lydtech.dispatch.message.DispatchPreparing;
-import dev.lydtech.tracking.message.TrackingStatus;
+import dev.lydtech.tracking.message.TrackingStatusUpdated;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 @Slf4j
 @Service
@@ -21,11 +19,11 @@ public class TrackingService {
     public void process(DispatchPreparing dispatchPreparing) throws Exception {
         log.info("Received dispatch preparing message : " + dispatchPreparing);
 
-        TrackingStatus trackingStatus = TrackingStatus.builder()
+        TrackingStatusUpdated trackingStatusUpdated = TrackingStatusUpdated.builder()
                 .orderId(dispatchPreparing.getOrderId())
-                .status(dev.lydtech.tracking.service.TrackingStatus.PREPARING.toString())
+                .status(TrackingStatus.PREPARING.toString())
                 .build();
-        kafkaProducer.send(TRACKING_STATUS_TOPIC, trackingStatus).get();
+        kafkaProducer.send(TRACKING_STATUS_TOPIC, trackingStatusUpdated).get();
     }
 
 }
