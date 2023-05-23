@@ -6,8 +6,6 @@ import dev.lydtech.tracking.util.TestEventData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.UUID;
-
 import static java.util.UUID.randomUUID;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -35,7 +33,7 @@ public class DispatchPreparingHandlerTest {
 
     @Test
     public void listen_ServiceThrowsException() throws Exception {
-        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(UUID.randomUUID());
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID());
         doThrow(new RuntimeException("Service failure")).when(trackingServiceMock).process(testEvent);
 
         handler.listen(testEvent);

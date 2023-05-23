@@ -1,8 +1,8 @@
 package dev.lydtech.tracking.integration;
 
 import dev.lydtech.dispatch.message.DispatchPreparing;
+import dev.lydtech.dispatch.message.TrackingStatusUpdated;
 import dev.lydtech.tracking.TrackingConfiguration;
-import dev.lydtech.tracking.message.TrackingStatusUpdated;
 import dev.lydtech.tracking.util.TestEventData;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -60,7 +60,12 @@ public class DispatchTrackingIntegrationTest {
             return new KafkaTestListener();
         }
 
-// Uncomment this to overcome the problem with an untrusted deserialization class for the test consumer
+// Solution 1 to the problem with an untrusted deserialization class for the test consumer.
+//
+// This creates a test consumer with it's own configuration rather than utilising the production consumer, which
+// is configured for handling the dispatch.preparing topic.
+// This is the preferred solution as it is restricted to just the test code, although is a bit more complex
+//
 //        @Bean
 //        public ConcurrentKafkaListenerContainerFactory<String, DispatchPreparing> kafkaTestListenerContainerFactory(ConsumerFactory<String, DispatchPreparing> consumerTestFactory) {
 //            final ConcurrentKafkaListenerContainerFactory<String, DispatchPreparing> factory = new ConcurrentKafkaListenerContainerFactory<>();
