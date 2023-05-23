@@ -44,7 +44,7 @@ public class TrackingConfiguration {
 
 // Solution 2 to the problem with an untrusted deserialization class for the test consumer.
 //
-// This simply changes the config to allow the deserielizer to attempt to deserialize any class that is in a dev.lydtech
+// This simply changes the config to allow the deserializer to attempt to deserialize any class that is in a dev.lydtech
 // package. We could also have a list of the acceptable packages.
 // This is ok and is quite a simple solution to the problem, but we only really need this to fix a problem in the test,
 // so changing the production config is not really the right thing to do, unless it should genuinely need to allow
