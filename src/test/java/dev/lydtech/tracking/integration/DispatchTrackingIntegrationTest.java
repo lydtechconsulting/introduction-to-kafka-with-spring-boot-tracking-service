@@ -62,7 +62,7 @@ public class DispatchTrackingIntegrationTest {
 
 // Solution 1 to the problem with an untrusted deserialization class for the test consumer.
 //
-// This creates a test consumer with it's own configuration rather than utilising the production consumer, which
+// This creates a test consumer with its own configuration rather than utilising the production consumer, which
 // is configured for handling the dispatch.preparing topic.
 // This is the preferred solution as it is restricted to just the test code, although is a bit more complex
 //
