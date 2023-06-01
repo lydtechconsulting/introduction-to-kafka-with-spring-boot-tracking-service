@@ -59,36 +59,12 @@ public class DispatchTrackingIntegrationTest {
         public KafkaTestListener testListener() {
             return new KafkaTestListener();
         }
-
-// Solution 1 to the problem with an untrusted deserialization class for the test consumer.
-//
-// This creates a test consumer with its own configuration rather than utilising the production consumer, which
-// is configured for handling the dispatch.preparing topic.
-// This is the preferred solution as it is restricted to just the test code, although is a bit more complex
-//
-//        @Bean
-//        public ConcurrentKafkaListenerContainerFactory<String, DispatchPreparing> kafkaTestListenerContainerFactory(ConsumerFactory<String, DispatchPreparing> consumerTestFactory) {
-//            final ConcurrentKafkaListenerContainerFactory<String, DispatchPreparing> factory = new ConcurrentKafkaListenerContainerFactory<>();
-//            factory.setConsumerFactory(consumerTestFactory);
-//            return factory;
-//        }
-//
-//        @Bean
-//        public ConsumerFactory<String, DispatchPreparing> consumerTestFactory(@Value("${kafka.bootstrap-servers}") String bootstrapServers) {
-//            final Map<String, Object> config = new HashMap<>();
-//            config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-//            config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
-//            config.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
-//            config.put(JsonDeserializer.VALUE_DEFAULT_TYPE, TrackingStatusUpdated.class);
-//            config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-//            return new DefaultKafkaConsumerFactory<>(config);
-//        }
     }
 
     public static class KafkaTestListener {
         AtomicInteger trackingStatusCounter = new AtomicInteger(0);
 
-        @KafkaListener(groupId = "kafkaIntegrationTest", topics = TRACKING_STATUS_TOPIC) //, containerFactory = "kafkaTestListenerContainerFactory")
+        @KafkaListener(groupId = "kafkaIntegrationTest", topics = TRACKING_STATUS_TOPIC)
         void receiveTrackingStatus(@Payload TrackingStatusUpdated payload) {
             log.debug("Received TrackingStatus: " + payload);
             trackingStatusCounter.incrementAndGet();

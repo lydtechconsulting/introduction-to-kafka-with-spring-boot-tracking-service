@@ -42,16 +42,6 @@ public class TrackingConfiguration {
         config.put(JsonDeserializer.VALUE_DEFAULT_TYPE, DispatchPreparing.class);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 
-// Solution 2 to the problem with an untrusted deserialization class for the test consumer.
-//
-// This simply changes the config to allow the deserializer to attempt to deserialize any class that is in a dev.lydtech
-// package. We could also have a list of the acceptable packages.
-// This is ok and is quite a simple solution to the problem, but we only really need this to fix a problem in the test,
-// so changing the production config is not really the right thing to do, unless it should genuinely need to allow
-// those classes in the production code.
-//
-//        config.put(JsonDeserializer.TRUSTED_PACKAGES, "dev.lydtech.*");
-
         return new DefaultKafkaConsumerFactory<>(config);
     }
 
