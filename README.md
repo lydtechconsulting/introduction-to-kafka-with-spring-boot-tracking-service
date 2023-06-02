@@ -1,2 +1,2 @@
-# udemy-kafka-beginner-assignment1
-Udemy beginner course on Spring Kafka - Assignment 1 - solution
+# introduction-to-kafka-with-spring-boot-tracking-service
+Introduction to Kafka with SpringBoot - Tracking Service - solution
