@@ -32,7 +32,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 @Slf4j
 @SpringBootTest(classes = {TrackingConfiguration.class})
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @ActiveProfiles("test")
 @EmbeddedKafka(controlledShutdown = true)
 public class DispatchTrackingIntegrationTest {
@@ -42,7 +41,7 @@ public class DispatchTrackingIntegrationTest {
     private final static String TRACKING_STATUS_TOPIC = "tracking.status";
 
     @Autowired
-    private KafkaTemplate kafkaTemplate;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
     @Autowired
     private EmbeddedKafkaBroker embeddedKafkaBroker;
@@ -76,7 +75,7 @@ public class DispatchTrackingIntegrationTest {
     public void setUp() {
         testListener.trackingStatusCounter.set(0);
 
-        registry.getListenerContainers().stream().forEach(container ->
+        registry.getListenerContainers().forEach(container ->
                 ContainerTestUtils.waitForAssignment(container, embeddedKafkaBroker.getPartitionsPerTopic()));
     }
 
