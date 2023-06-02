@@ -14,7 +14,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-public class DispatchPreparingHandlerTest {
+public class DispatchTrackingHandlerTest {
 
     private TrackingService trackingServiceMock;
 
