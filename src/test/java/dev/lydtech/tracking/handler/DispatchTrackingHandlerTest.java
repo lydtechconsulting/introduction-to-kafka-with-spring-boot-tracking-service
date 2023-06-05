@@ -10,7 +10,11 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import static org.mockito.Mockito.*;
+import static java.util.UUID.randomUUID;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class DispatchTrackingHandlerTest {
 
@@ -25,7 +29,7 @@ public class DispatchTrackingHandlerTest {
     }
 
     @Test
-    public void testListenDispatchPreparing() {
+    public void testListenDispatchPreparing() throws Exception {
         DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(UUID.randomUUID());
         handler.listen(testEvent);
         verify(trackingServiceMock, times(1)).processDispatchPreparing(testEvent);
@@ -36,5 +40,15 @@ public class DispatchTrackingHandlerTest {
         DispatchCompleted testEvent = TestEventData.buildDispatchCompletedEvent(UUID.randomUUID(), LocalDate.now().toString());
         handler.listen(testEvent);
         verify(trackingServiceMock, times(1)).processDispatched(testEvent);
+    }
+
+    @Test
+    public void listen_ServiceThrowsException() throws Exception {
+        DispatchPreparing testEvent = TestEventData.buildDispatchPreparingEvent(randomUUID());
+        doThrow(new RuntimeException("Service failure")).when(trackingServiceMock).processDispatchPreparing(testEvent);
+
+        handler.listen(testEvent);
+
+        verify(trackingServiceMock, times(1)).processDispatchPreparing(testEvent);
     }
 }
