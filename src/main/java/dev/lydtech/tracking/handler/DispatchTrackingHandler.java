@@ -17,13 +17,18 @@ import org.springframework.stereotype.Component;
         topics = "dispatch.tracking",
         groupId = "tracking.dispatch.tracking",
         containerFactory = "kafkaListenerContainerFactory"
-)public class DispatchTrackingHandler {
+)
+public class DispatchTrackingHandler {
 
     @Autowired
     private final TrackingService trackingService;
 
     @KafkaHandler
-    public void listen(DispatchPreparing dispatchPreparing) {
-        trackingService.process(dispatchPreparing);
+    public void listen(DispatchPreparing dispatchPreparing) throws Exception {
+        try {
+            trackingService.process(dispatchPreparing);;
+        } catch (Exception e) {
+            log.error("Processing failure", e);
+        }
     }
 }
