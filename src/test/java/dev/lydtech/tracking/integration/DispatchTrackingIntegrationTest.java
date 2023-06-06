@@ -1,5 +1,6 @@
 package dev.lydtech.tracking.integration;
 
+import dev.lydtech.dispatch.message.DispatchCompleted;
 import dev.lydtech.dispatch.message.DispatchPreparing;
 import dev.lydtech.dispatch.message.TrackingStatusUpdated;
 import dev.lydtech.tracking.TrackingConfiguration;
@@ -23,6 +24,7 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -80,7 +82,7 @@ public class DispatchTrackingIntegrationTest {
     }
 
     @Test
-    public void testDispatchTrackingFlow() throws Exception{
+    public void testDispatchPreparingFlow() throws Exception{
         DispatchPreparing dispatchPreparing = TestEventData.buildDispatchPreparingEvent(randomUUID());
         sendMessage(DISPATCH_TRACKING_TOPIC, dispatchPreparing);
 
@@ -89,6 +91,15 @@ public class DispatchTrackingIntegrationTest {
 
     }
 
+    @Test
+    public void testDispatchedFlow() throws Exception{
+        DispatchCompleted dispatchCompleted = TestEventData.buildDispatchCompletedEvent(randomUUID(), LocalDate.now().toString());
+        sendMessage(DISPATCH_TRACKING_TOPIC, dispatchCompleted);
+
+        await().atMost(3, TimeUnit.SECONDS).pollDelay(100, TimeUnit.MILLISECONDS)
+                .until(testListener.trackingStatusCounter::get, equalTo(1));
+
+    }
     private void sendMessage(String topic, Object data) throws Exception {
         kafkaTemplate.send(MessageBuilder
                 .withPayload(data)

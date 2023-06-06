@@ -28,14 +28,17 @@ public class DispatchTrackingHandler {
     public void listen(DispatchPreparing dispatchPreparing) throws Exception {
         try {
             trackingService.processDispatchPreparing(dispatchPreparing);
-            ;
         } catch (Exception e) {
-            log.error("Processing failure", e);
+            log.error("DispatchPreparing processing failure", e);
         }
     }
 
     @KafkaHandler
     public void listen(DispatchCompleted dispatchCompleted) {
-        trackingService.processDispatched(dispatchCompleted);
+        try {
+            trackingService.processDispatched(dispatchCompleted);
+        } catch (Exception e) {
+            log.error("DispatchCompleted processing failure", e);
+        }
     }
 }

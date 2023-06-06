@@ -28,8 +28,14 @@ public class TrackingService {
         kafkaProducer.send(TRACKING_STATUS_TOPIC, trackingStatusUpdated).get();
     }
 
-    public void processDispatched(DispatchCompleted dispatchCompleted) {
+    public void processDispatched(DispatchCompleted dispatchCompleted) throws Exception {
         log.info("Received dispatched message : " + dispatchCompleted);
+
+        TrackingStatusUpdated trackingStatusUpdated = TrackingStatusUpdated.builder()
+                .orderId(dispatchCompleted.getOrderId())
+                .status(TrackingStatus.DISPATCHED)
+                .build();
+        kafkaProducer.send(TRACKING_STATUS_TOPIC, trackingStatusUpdated).get();
     }
 
 }
