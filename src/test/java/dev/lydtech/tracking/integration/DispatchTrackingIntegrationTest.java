@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -60,10 +61,11 @@ public class DispatchTrackingIntegrationTest {
         }
     }
 
+    @KafkaListener(groupId = "kafkaIntegrationTest", topics = TRACKING_STATUS_TOPIC)
     public static class KafkaTestListener {
         AtomicInteger trackingStatusCounter = new AtomicInteger(0);
 
-        @KafkaListener(groupId = "kafkaIntegrationTest", topics = TRACKING_STATUS_TOPIC)
+        @KafkaHandler
         void receiveTrackingStatus(@Payload TrackingStatusUpdated payload) {
             log.debug("Received TrackingStatus: " + payload);
             trackingStatusCounter.incrementAndGet();
