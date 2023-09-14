@@ -1,6 +1,6 @@
 # Introduction to Kafka with Spring Boot - Tracking Service
 
-This repository contains the code to support the [Introduction to Kafka with Spring Boot](https://www.udemy.com/course/introduction-to-kafka-with-spring-boot) online course, for the Tracking Service portion of the course.
+This repository contains the code to support the [Introduction to Kafka with Spring Boot](https://www.udemy.com/course/introduction-to-kafka-with-spring-boot/?referralCode=15118530CA63AD1AF16D) online course, for the Tracking Service portion of the course.
 
 The associated repository for the Dispatch Service can be found here:  [Dispatch Service Repository](https://github.com/lydtechconsulting/introduction-to-kafka-with-spring-boot)
 
